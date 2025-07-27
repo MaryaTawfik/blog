@@ -20,7 +20,7 @@ const Home = ({ posts }) => {
               date={new Date().toLocaleDateString()} // Placeholder for the date
               excerpt={post.description}
               // Pass the post ID for routing
-              id={index} // You can replace this with a unique ID if available
+              id={index} // You can replace this with a unique ID if availablez
             />
           ))
         ) : (

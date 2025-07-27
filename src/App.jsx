@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/navbar"; // Ensure this path is correct
@@ -9,6 +9,19 @@ import EditBlog from "./pages/editblog"; // Ensure this path is correct
 
 function App() {
   const [posts, setPosts] = useState([]);
+
+  // Load posts from localStorage on mount
+  useEffect(() => {
+    const storedPosts = localStorage.getItem('blogPosts');
+    if (storedPosts) {
+      setPosts(JSON.parse(storedPosts));
+    }
+  }, []);
+
+  // Update localStorage whenever posts change
+  useEffect(() => {
+    localStorage.setItem('blogPosts', JSON.stringify(posts));
+  }, [posts]);
 
   const addPost = (newPost) => {
     setPosts([...posts, newPost]);
